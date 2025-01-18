@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One Page Site</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #e8f4f8;
+            color: #6c5b7b;
+        }
+
+        header {
+            background: #c8a2c8;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .gallery {
+            padding: 30px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            padding: 15px;
+        }
+
+        .grid img {
+            width: 100%;
+            height: 250px;
+            border-radius: 20px;
+            border: 3px solid #c8a2c8;
+            cursor: pointer;
+        }
+
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(200, 162, 200, 0.9);
+            display: none;
+        }
+
+        .lightbox.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox img {
+            max-width: 85%;
+            border-radius: 20px;
+            border: 5px solid white;
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            color: white;
+            font-size: 35px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Lightbox</h1>
+        <p>Tap to view larger</p>
+    </header>
+
+    <div class="gallery">
+        <div class="grid">
+            <img src="images/1.png" alt="placeholder">
+            <img src="images/2.png" alt="placeholder">
+            <img src="images/3.png" alt="placeholder">
+            <img src="images/4.png" alt="placeholder">
+        </div>
+    </div>
+
+    <div class="lightbox">
+        <span class="close">×</span>
+        <img src="" alt="" id="lightbox-img">
+    </div>
+
+    <script>
+        const images = document.querySelectorAll('.grid img');
+        const lightbox = document.querySelector('.lightbox');
+        const lightboxImg = document.querySelector('#lightbox-img');
+        const close = document.querySelector('.close');
+
+        images.forEach(img => {
+            img.addEventListener('click', () => {
+                lightboxImg.src = img.src;
+                lightbox.classList.add('active');
+            });
+        });
+
+        close.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+        });
+    </script>
+</body>
+</html>
